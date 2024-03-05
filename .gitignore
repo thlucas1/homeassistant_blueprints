@@ -25,4 +25,4 @@ config/*
 /Git*.txt
 
 # Local project files to ignore.
-/*/zzz_Publish.cmd
+zzz_Publish.cmd
