@@ -2,7 +2,7 @@
 
 __SoundTouch NowPlaying Status Update Kodi Movie__
 
-Updates SoundTouchPlus media player NowPlaying status from Kodi media player Movie content attributes when the specified SoundTouch Source is selected.  This allows the SoundTouchPlus media player to show what is playing on the Kodi media player when using Kodi with a SoundTouch speaker system.
+Updates SoundTouchPlus media player NowPlaying status from Kodi media player Movie content attributes if the specified SoundTouch Source is selected.  This allows the SoundTouchPlus media player to show what is playing on the Kodi media player when using Kodi with a SoundTouch speaker system.
 
 Use the following links for more information.
 * [Requirements](#requirements)
@@ -30,6 +30,11 @@ For music service sources (Spotify, TuneIn, Pandora, etc), the SoundTouch device
 For source that do not support automatic updates, the SoundTouch device does not provide the SoundTouchPlus integration with updates from the source - it simply reports that something is playing and that's it.  This is expected behavior, as the SoundTouch device knows nothing about the source other than it is selected and it is using it as an audio source.
 
 To account for this, the SoundTouchPlus integration provides a custom service that allows you to send it updates (as frequently as you wish) with status updates for a given source.  For example, the SoundTouchPlus integration does not receive any NowPlayingStatus updates if my SoundTouch 300 soundbar is being used as the source (e.g. Product (TV)) for content played by a Kodi Media Player.  I can setup automations from Kodi attribute changes that supply these updates (e.g. a cover art image, movie title, track name, etc) to the SoundTouchPlus integration for the `Product (TV)` source.  It will then display these NowPlayingStatus updates in the SoundTouchPlus media player for the given source.
+
+In the case of Kodi Movies, the following SoundTouchPlus NowPlayingStatus attributes are set from corresponding Kodi media player attributes:
+- `art_url` set from Kodi media player `entity_picture` attribute.
+- `station_name` set from Kodi media player `media_title` attribute.
+- `station_location` set to `Kodi`.
 
 Once you are finished providing NowPlayingStatus updates to the SoundTouchPlus integration, use a call to the [NowPlaying Clear Source](./nowplaying_clear_source.md) blueprint to remove the source-specific NowPlayingStatus updates.  
 
