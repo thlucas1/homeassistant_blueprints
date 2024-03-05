@@ -28,7 +28,7 @@ blueprint:
         This value is case-sensitive.
       selector:
         text:
-      default: "Product (TV)"
+      default: "Product (HDMI_1)"
 
 variables:
   var_kodi_player: !input kodi_player
