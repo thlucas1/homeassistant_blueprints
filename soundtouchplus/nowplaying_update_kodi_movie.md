@@ -20,7 +20,7 @@ Use the following links for more information.
 
 Use this blueprint to manually update the SoundtouchPlus NowPlayingStatus with Kodi media player attribute details for a given source title.  
 
-This blueprint should be used in conjunction with other blueprints that manually update the SoundtouchPlus NowPlayingStatus for a given source title (e.g. [NowPlaying Clear Source](./nowplaying_clear_source)). 
+This blueprint should be used in conjunction with other blueprints that manually update the SoundtouchPlus NowPlayingStatus for a given source title (e.g. [NowPlaying Clear Source](./nowplaying_clear_source.md)). 
 
 
 # How It Works
