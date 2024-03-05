@@ -64,6 +64,6 @@ action:
       station_location: Kodi
 
 # restart the script if it is triggered again while already running.
-# do not log any messages if we restart the script.
+# do not log any messages if we exceed limit threshold.
 mode: restart
 max_exceeded: silent  
