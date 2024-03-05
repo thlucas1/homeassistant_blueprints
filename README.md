@@ -7,8 +7,8 @@ Welcome to my Home Assistant Blueprint Library.
 Blueprints are organized by functionality in separate folders.  Each Blueprint has a code file (.yaml extension) and a documentation file (.md extension) that contains set-up and usage of the blueprint.
 
 Here are a few helpful links to get you started:
-* [SoundTouchPlus Integration](./soundtouchplus)
-* [SpotifyPlus Integration](./spotifyplus)
+* [SoundTouchPlus Integration](./soundtouchplus)  
+* [SpotifyPlus Integration](./spotifyplus)  
 
 
 ## Report a Problem
