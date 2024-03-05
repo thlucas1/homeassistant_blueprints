@@ -24,7 +24,7 @@ blueprint:
     source_title:
       name: SoundTouch Source Title
       description: >-
-        Source input the content item is played with (e.g. 'Product (HDMI_1)').  
+        Source input the content item is played with (e.g. 'Product (TV)').  
         This value is case-sensitive.
       selector:
         text:
