@@ -24,11 +24,11 @@ blueprint:
     source_title:
       name: SoundTouch Source Title
       description: >-
-        Source input the content item is played with (e.g. 'Product (TV)').  
+        Source input the content item is played with (e.g. 'Product (HDMI_1)').  
         This value is case-sensitive.
       selector:
         text:
-      default: "Product (HDMI_1)"
+      default: "Product (TV)"
 
 variables:
   var_kodi_player: !input kodi_player
