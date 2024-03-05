@@ -36,18 +36,18 @@ variables:
   var_kodi_player: !input kodi_player
 
 trigger:
-  # when kodi media title changes.
+  # when Kodi media player media title changes.
   - platform: state
     entity_id: !input kodi_player
     attribute: media_title
 
 condition:
-  # when media played on Kodi is a TVShow.
+  # when Kodi media player media content type is a Movie.
   - condition: state
     entity_id: !input kodi_player
     attribute: media_content_type
     state: movie
-  # when SoundTouch source and source account matches input values.
+  # when SoundTouchPlus source title matches input value.
   - condition: state
     entity_id: !input soundtouch_player
     attribute: source
@@ -63,7 +63,7 @@ action:
       station_name: "{{ state_attr(var_kodi_player, 'media_title') }}"
       station_location: Kodi
 
-# if kodi media title changes while executing the script then restart script.
-mode: restart
+# restart the script if it is triggered again while already running.
 # do not log any messages if we restart the script.
+mode: restart
 max_exceeded: silent  
