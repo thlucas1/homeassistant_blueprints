@@ -1,0 +1,62 @@
+blueprint:
+  name: SoundTouch NowPlaying Status Clear for Kodi
+  description: >-
+    Clears SoundTouchPlus media player NowPlaying status from Kodi media player 
+    Movie content attributes when the specified SoundTouch Source is selected.
+    This allows the SoundTouchPlus media player to show what is playing
+    on the Kodi player when using Kodi with a SoundTouch speaker system.
+  author: Todd Lucas
+  domain: automation
+  
+  input:
+    kodi_player:
+      name: Kodi Media Player
+      description: The Kodi media player that is playing the media.
+      selector:
+        entity:
+          integration: kodi
+          domain: media_player      
+    soundtouch_player:
+      name: SoundTouch Media Player
+      description: The SoundTouch media player that will be updated.
+      selector:
+        entity:
+          integration: soundtouchplus
+          domain: media_player      
+    source_title:
+      name: SoundTouch Source Title
+      description: >-
+        Source input the content item is played with (e.g. 'Product (TV)').  
+        This value is case-sensitive.
+      selector:
+        text:
+      default: "Product (TV)"
+
+variables:
+  var_kodi_player: !input kodi_player
+
+trigger:
+  # when kodi media title changes to nothing
+  - platform: state
+    entity_id: !input kodi_player
+    attribute: media_title
+    to: ''
+
+condition:
+  # when SoundTouch source and source account matches input values.
+  - condition: state
+    entity_id: !input soundtouch_player
+    attribute: source
+    state: !input source_title
+
+action:
+  # call SoundTouchPlus service to clear source-specific NowPlayingStatus.
+  - service: soundtouchplus.clear_source_nowplayingstatus
+    data:
+      entity_id: !input soundtouch_player
+      source_title: !input source_title
+
+# if kodi media title changes while executing the script then restart script.
+mode: restart
+# do not log any messages if we restart the script.
+max_exceeded: silent  
