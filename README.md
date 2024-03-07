@@ -8,7 +8,7 @@ Blueprints are organized by functionality in separate folders.  Each Blueprint h
 
 Here are a few helpful links to get you started:
 * [SoundTouchPlus Integration](./soundtouchplus/index.md)  
-* [SpotifyPlus Integration](./spotifyplus)  
+* [SpotifyPlus Integration](./spotifyplus/index.md)  
 
 
 ## Report a Problem
