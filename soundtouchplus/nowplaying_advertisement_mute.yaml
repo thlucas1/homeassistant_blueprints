@@ -3,7 +3,7 @@ blueprint:
   description: >-
     Mutes the specified SoundTouchPlus Media Player when the selected source starts
     playing an advertisement.
-  author: Todd Lucas
+  author: Todd Lucas 
   domain: automation
   
   input:
