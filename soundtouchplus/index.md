@@ -3,8 +3,8 @@
 Welcome to the Blueprint index for the Home Assistant SoundTouchPlus custom component integration.
 
 Here are a few helpful links to get you started:
-* [NowPlaying Advertisement Mute](./nowplaying_advertisement_mute)
-* [NowPlaying Status Clear for Source](./nowplaying_clear_source)
+* [NowPlaying Advertisement Mute](./nowplaying_advertisement_mute.md)
+* [NowPlaying Status Clear for Source](./nowplaying_clear_source.md)
 * [NowPlaying Status Update Kodi Movie](./nowplaying_update_kodi_movie.md)
 * [NowPlaying Status Update Kodi Music](./nowplaying_update_kodi_music.md)
 * [NowPlaying Status Update Kodi TVShow](./nowplaying_update_kodi_tvshow.md)
