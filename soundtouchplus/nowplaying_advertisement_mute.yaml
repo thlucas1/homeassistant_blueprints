@@ -15,9 +15,6 @@ blueprint:
           integration: soundtouchplus
           domain: media_player      
 
-variables:
-  var_kodi_player: !input kodi_player
-
 trigger:
   # when SoundTouchPlus media player custom state changes.
   - platform: state
