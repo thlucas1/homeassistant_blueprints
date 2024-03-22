@@ -1,5 +1,5 @@
 blueprint:
-  name: SoundTouchPlus Media Player Advertisement Mute
+  name: SoundTouchPlus Media Player Advertisement Mute On
   description: >-
     Mutes the specified SoundTouchPlus Media Player when the selected source starts
     playing an advertisement.

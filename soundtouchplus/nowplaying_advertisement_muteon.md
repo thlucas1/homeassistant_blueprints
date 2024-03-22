@@ -1,8 +1,8 @@
 # Blueprint Summary
 
-__SoundTouch NowPlaying Advertisement Mute__
+__SoundTouch NowPlaying Advertisement Mute On__
 
-Mutes a SoundTouchPlus media player if the currently playing source is identified as an advertisement.  
+Mute the volume of a SoundTouch media player when the currently playing source starts playing an advertisement.
 
 Note that not all sources track advertisements.
 - TuneIn source does not track advertisements; 
@@ -25,7 +25,7 @@ Use the following links for more information.
 
 Use this blueprint to automatically mute the volume of a SoundTouch media player when the currently playing source starts playing an advertisement.  
 
-This blueprint should be used in conjunction with the [SoundTouch NowPlaying Advertisement UnMute]() blueprint, which unmutes the media player when the advertisement is done playing.
+This blueprint should be used in conjunction with the [SoundTouch NowPlaying Advertisement MuteOff](./nowplaying_advertisement_muteoff) blueprint, which unmutes the media player when the advertisement is finished playing.
 
 
 # How It Works
@@ -39,7 +39,7 @@ The IsAdvertisement flag is set in the SoundTouchPlus media player's custom stat
 
 Use the following link to import the blueprint into your Home Assistant image.
 
-<a href="https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fthlucas1%2Fhomeassistant_blueprints%2Fblob%2Fmaster%2Fsoundtouchplus%2Fnowplaying_advertisement_mute.yaml"><img src="https://my.home-assistant.io/badges/blueprint_import.svg" alt="Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled." width="" height="" loading="lazy"></a>
+<a href="https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fthlucas1%2Fhomeassistant_blueprints%2Fblob%2Fmaster%2Fsoundtouchplus%2Fnowplaying_advertisement_muteon.yaml"><img src="https://my.home-assistant.io/badges/blueprint_import.svg" alt="Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled." width="" height="" loading="lazy"></a>
 
 
 # Change Log

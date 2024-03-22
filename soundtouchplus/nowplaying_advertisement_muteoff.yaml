@@ -1,0 +1,38 @@
+blueprint:
+  name: SoundTouchPlus Media Player Advertisement Mute Off
+  description: >-
+    UnMutes the specified SoundTouchPlus Media Player when the selected source finishes
+    playing an advertisement.
+  author: Todd Lucas 
+  domain: automation
+  
+  input:
+    soundtouch_player:
+      name: Media Player
+      description: The SoundTouchPlus media player that will be updated.
+      selector:
+        entity:
+          integration: soundtouchplus
+          domain: media_player      
+
+trigger:
+  # when SoundTouchPlus media player custom state changes.
+  - platform: state
+    entity_id: !input soundtouch_player
+    attribute: soundtouchplus_nowplaying_isadvertisement
+    to: false
+
+condition: []
+
+action:
+  # UnMute the media player volume.
+  - service: media_player.volume_mute
+    target:
+      entity_id: !input soundtouch_player
+    data:
+      is_volume_muted: false
+      
+# restart the script if it is triggered again while already running.
+# do not log any messages if we exceed limit threshold.
+mode: restart
+max_exceeded: silent  
