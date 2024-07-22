@@ -1,0 +1,45 @@
+blueprint:
+  name: SpotifyPlus Play Playlist with Shuffle
+  description: >-
+    Plays a Spotify Playlist with Shuffle enabled on the specified SpotifyPlus media player.
+  author: Todd Lucas 
+  domain: automation
+  
+  input:
+    spotifyplus_player:
+      name: Media Player
+      description: The SpotifyPlus media player that will be used to play the Spotify Playlist.
+      selector:
+        entity:
+          integration: spotifyplus
+          domain: media_player
+          
+    playlist_uri:
+      name: Spotify Playlist Uri
+      description: >-
+        Spotify playlist id to be played (e.g. 'spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE').  
+      selector:
+        text:
+      default: "spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE"
+
+trigger: []
+condition: []
+
+action:
+  # enable shuffle mode.
+  - service: media_player.shuffle_set
+    data:
+      entity_id: !input spotifyplus_player
+      shuffle: true
+
+  # play the Spotify playlist.
+  - service: media_player.play_media
+    data:
+      entity_id: !input spotifyplus_player
+      media_content_id: !input playlist_uri
+      media_content_type: playlist      
+      
+# restart the script if it is triggered again while already running.
+# do not log any messages if we exceed limit threshold.
+mode: restart
+max_exceeded: silent  
