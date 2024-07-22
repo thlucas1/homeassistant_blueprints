@@ -22,9 +22,9 @@ Use this blueprint to automatically play a Spotify playlist, with shuffle enable
 
 # How It Works
 
-The `set_shuffle` service is called on the specified SpotifyPlus media player to enable shuffle mode.
+The `media_player.set_shuffle` service is called on the specified SpotifyPlus media player to enable shuffle mode.
 
-The `play_media` service is called on the specified SpotifyPlus media player to start play of the specified Spotify playlist URI.
+The `media_player.play_media` service is then called on the specified SpotifyPlus media player to start play of the specified Spotify playlist URI.
 
 # Import Blueprint
 
