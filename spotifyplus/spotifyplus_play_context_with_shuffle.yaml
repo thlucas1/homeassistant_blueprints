@@ -20,7 +20,7 @@ blueprint:
         The id or name of the Spotify Connect Player device this command is targeting.  If not supplied, the user's currently active device is the target.  If no device is active (or an "*" is specified), then the SpotifyPlus default device is activated.
       selector:
         text:
-      default:
+      default: ""
 
     context_uri:
       name: Context Uri
