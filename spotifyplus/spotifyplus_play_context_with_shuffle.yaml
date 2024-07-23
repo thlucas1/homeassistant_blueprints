@@ -8,7 +8,7 @@ blueprint:
   input:
     media_player:
       name: Media Player
-      description: The SpotifyPlus media player that will be used to play the Spotify Playlist.
+      description: The SpotifyPlus media player that will be used to play the Spotify Playlist.  
       selector:
         entity:
           integration: spotifyplus
