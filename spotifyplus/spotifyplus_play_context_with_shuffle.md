@@ -13,7 +13,7 @@ Use the following links for more information.
 
 
 # Requirements
-* [SpotifyPlus integration, version 1.0.42+](https://github.com/thlucas1/homeassistantcomponent_spotifyplus/wiki)
+* [SpotifyPlus integration, version 1.0.43+](https://github.com/thlucas1/homeassistantcomponent_spotifyplus/wiki)
 
 
 # What It Does
