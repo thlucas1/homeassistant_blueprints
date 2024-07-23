@@ -17,7 +17,7 @@ blueprint:
     playlist_uri:
       name: Spotify Playlist Uri
       description: >-
-        Spotify playlist id to be played (e.g. 'spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE').  
+        Spotify playlist uri to be played (e.g. 'spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE').  
       selector:
         text:
       default: "spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE"
