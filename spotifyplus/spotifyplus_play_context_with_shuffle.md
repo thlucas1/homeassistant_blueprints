@@ -45,4 +45,6 @@ Use the following link to import the blueprint into your Home Assistant image.
 
 #### [ 1.0.1 ] - 2024/07/23
 
+  * Changed the name from `spotifyplus_play_playlist_with_shuffle` to `spotifyplus_play_context_with_shuffle`, as it now supports playlist, album, and artist contexts.
   * Switched media_player service calls to equivalent spotifyplus service calls.
+  * Corrected a bug that was not processing optional parameters correctly.
