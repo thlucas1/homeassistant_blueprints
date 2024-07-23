@@ -9,7 +9,6 @@ blueprint:
     media_player:
       name: Media Player
       description: The SpotifyPlus media player that will be used to play the Spotify Playlist.
-      required: true
       selector:
         entity:
           integration: spotifyplus
@@ -19,7 +18,6 @@ blueprint:
       name: Device ID
       description: >-
         The id or name of the Spotify Connect Player device this command is targeting.  If not supplied, the user's currently active device is the target.  If no device is active (or an "*" is specified), then the SpotifyPlus default device is activated.
-      required: false
       selector:
         text:
 
@@ -27,7 +25,6 @@ blueprint:
       name: Context Uri
       description: >-
         Spotify URI of the context to play (e.g. `spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE`, `spotify:album:6vc9OTcyd3hyzabCmsdnwE`, etc).  Valid contexts are albums, artists & playlists. 
-      required: true
       selector:
         text:
       default: "spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE"
@@ -36,7 +33,6 @@ blueprint:
       name: Context Offset Position
       description: >-
         Indicates from what position in the context playback should start.  The value is zero-based, and must be a positive number, or -1 to disable positioning.  Only available when contextUri corresponds to an album or playlist.  Specify zero to start playback at the beginning of the context (e.g. first track).
-      required: false
       selector:
         number:
           min: -1
