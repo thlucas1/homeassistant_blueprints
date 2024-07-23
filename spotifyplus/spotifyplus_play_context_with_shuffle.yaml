@@ -1,0 +1,62 @@
+blueprint:
+  name: SpotifyPlus Play Context with Shuffle
+  description: >-
+    Plays a Spotify Playlist, Album, or Artist context with Shuffle enabled on the specified SpotifyPlus media player.
+  author: Todd Lucas 
+  domain: automation
+  
+  input:
+    media_player:
+      name: Media Player
+      description: The SpotifyPlus media player that will be used to play the Spotify Playlist.
+      selector:
+        entity:
+          integration: spotifyplus
+          domain: media_player
+          
+    device_id:
+      name: Device ID
+      description: >-
+        The id or name of the Spotify Connect Player device this command is targeting.  If not supplied, the user's currently active device is the target.  If no device is active (or an "*" is specified), then the SpotifyPlus default device is activated.
+      selector:
+        text:
+
+    context_uri:
+      name: Context Uri
+      description: >-
+        Spotify URI of the context to play (e.g. `spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE`, `spotify:album:6vc9OTcyd3hyzabCmsdnwE`, etc).  Valid contexts are albums, artists & playlists. 
+      selector:
+        text:
+      default: "spotify:playlist:5v5ETK9WFXAnGQ3MRubKuE"
+
+    offset_position:
+      name: Context Offset Position
+      description: >-
+        Indicates from what position in the context playback should start.  The value is zero-based, and can't be negative.  Only available when contextUri corresponds to an album or playlist.  Specify zero to start playback at the beginning of the context (e.g. first track).
+      selector:
+        text:
+      default: "0"
+
+trigger: []
+condition: []
+
+action:
+  # enable shuffle mode.
+  - service: spotifyplus.player_set_shuffle_mode
+    data:
+      entity_id: !input media_player
+      device_id: !input device_id
+      shuffle: true
+
+  # play the Spotify context (playlist, album, etc).
+  - service: spotifyplus.player_media_play_context
+    data:
+      entity_id: !input media_player
+      device_id: !input device_id
+      context_uri: !input context_uri
+      offset_position: !input offset_position
+      
+# restart the script if it is triggered again while already running.
+# do not log any messages if we exceed limit threshold.
+mode: restart
+max_exceeded: silent  
