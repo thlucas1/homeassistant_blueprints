@@ -33,10 +33,10 @@ blueprint:
     offset_position:
       name: Context Offset Position
       description: >-
-        Indicates from what position in the context playback should start.  The value is zero-based, and can't be negative.  Only available when contextUri corresponds to an album or playlist.  Specify zero to start playback at the beginning of the context (e.g. first track).
+        Indicates from what position in the context playback should start.  The value is zero-based, and must be a positive number, or -1 to disable positioning.  Only available when contextUri corresponds to an album or playlist.  Specify zero to start playback at the beginning of the context (e.g. first track).
       selector:
         number:
-          min: 0
+          min: -1
           max: 500
           mode: box
       default:
