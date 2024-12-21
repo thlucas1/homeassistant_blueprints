@@ -1,0 +1,55 @@
+blueprint:
+  name: SpotifyPlus Playlist Get Cover Image
+  description: >-
+    Retrieves a Spotify Playlist cover image from a CDN and stores it on the local HA instance.
+  author: Todd Lucas 
+  domain: automation
+  
+  input:
+    media_player:
+      name: Media Player
+      description: The SpotifyPlus media player that will service the request.
+      selector:
+        entity:
+          integration: spotifyplus
+          domain: media_player
+          
+    playlist_id:
+      name: Playlist ID
+      description: >-
+        The id of the Spotify Playlist whose cover image you want to retrieve (e.g. 37i9dQZF1E3acA7MxpciJ9).
+      selector:
+        text:
+      default: ""
+
+    output_path:
+      name: Output Path
+      description: >-
+        Fully-qualified path name where the cover image will be stored on the Local HA instance (e.g. `/config/www/spotifyplus/userpreset_images/daily_mix_01).
+      selector:
+        text:
+      default: "/config/www/my_cover_image"
+
+trigger: []
+condition: []
+
+action:
+  # get the playlist cover image url.
+  - service: spotifyplus.get_playlist_cover_image
+    response_variable: playlist_data
+    data:
+      entity_id: !input media_player
+      playlist_id: !input playlist_id
+      state: true
+
+  # play the Spotify context (playlist, album, etc).
+  - service: spotifyplus.get_cover_image_file
+    data:
+      entity_id: !input media_player
+      image_url: "{{ playlist_data.result.url }}"
+      output_path: !input output_path
+
+# restart the script if it is triggered again while already running.
+# do not log any messages if we exceed limit threshold.
+mode: restart
+max_exceeded: silent  

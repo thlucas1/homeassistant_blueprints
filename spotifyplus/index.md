@@ -4,6 +4,7 @@ Welcome to the Blueprint index for the Home Assistant SpotifyPlus custom compone
 
 Here are a few helpful links to get you started:
 * [SpotifyPlus Play Context with Shuffle](./spotifyplus_play_context_with_shuffle.md)
+* [SpotifyPlus Playlist Get Cover Image](./spotifyplus_playlist_get_cover_image.md)
 
 ## Report a Problem
 Are you having a problem with an integration blueprint?  Submit a [Bug Report](https://github.com/thlucas1/homeassistant_blueprints/issues/new?assignees=&labels=Bug&projects=&template=bug.yml) to bring the issue to my attention.  I receive a notification when a new issue is opened, and will do my best to address it in a prompt and professional manner.
