@@ -25,7 +25,7 @@ blueprint:
     output_path:
       name: Output Path
       description: >-
-        Fully-qualified path name where the cover image will be stored on the Local HA instance (e.g. `/config/www/spotifyplus/userpreset_images/daily_mix_01).
+        Fully-qualified path name where the cover image will be stored on the Local HA instance (e.g. `/config/www/spotifyplus/userpreset_images/daily_mix_01.jpg).
       selector:
         text:
       default: "/config/www/my_cover_image"
