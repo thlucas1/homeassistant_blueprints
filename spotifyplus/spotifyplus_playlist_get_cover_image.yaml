@@ -2,6 +2,7 @@ blueprint:
   name: SpotifyPlus Playlist Get Cover Image
   description: >-
     Retrieves a Spotify Playlist cover image from a CDN and stores it on the local HA instance.
+    Triggers every day, at 06:00 AM.
   author: Todd Lucas 
   domain: automation
   
@@ -30,7 +31,12 @@ blueprint:
         text:
       default: "/config/www/my_cover_image"
 
-trigger: []
+trigger:
+  - trigger: time_pattern
+    hours: "06"
+    minutes: "00"
+    seconds: "00"
+
 condition: []
 
 action:
