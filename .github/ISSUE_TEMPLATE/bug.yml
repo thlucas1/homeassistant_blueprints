@@ -1,38 +1,49 @@
 ---
-name: "Bug report"
-description: "Report a bug with the integration"
-labels: "Bug"
+name: "Bug Report"
+description: "Report a bug with a blueprint."
+labels: 
+- bug
+
 body:
+
 - type: markdown
   attributes:
-    value: Before you open a new issue, search through the existing issues to see if others have had the same problem.
+    value: Before you open a new issue, search through the existing issues to see if others have had the same problem; also make sure you are running the latest version of Home Assistant.
+
 - type: textarea
   attributes:
     label: "System Health details"
-    description: "Paste the data from the System Health card in Home Assistant (https://www.home-assistant.io/more-info/system-health#github-issues)"
+    description: "Paste the data from the Home Assistant [System Health card](https://www.home-assistant.io/more-info/system-health#github-issues) here."
   validations:
     required: true
+
 - type: checkboxes
   attributes:
     label: Checklist
     options:
-      - label: I have enabled SmartInspect debug logging for my installation.
+      - label: I am running the latest version of Home Assistant for my installation.
+        required: true
+      - label: I am running the latest version of the affected integration (e.g. SpotifyPlus, SoundTouchPlus, etc) for my installation.
+        required: true
+      - label: I am running the latest version of the blueprint.
         required: true
       - label: I have filled out the issue template to the best of my ability.
         required: true
       - label: This issue only contains 1 issue (if you have multiple issues, open one issue for each issue).
         required: true
-      - label: This issue is not a duplicate issue of any [previous issues](https://github.com/thlucas1/homeassistantcomponent_soundtouchplus/issues?q=is%3Aissue+label%3A%22Bug%22+)..
+      - label: This issue is not a duplicate report ([search previously reported issues](https://github.com/thlucas1/homeassistant_blueprints/issues?q=is%3Aissue+label%3Abug)).
         required: true
+
 - type: textarea
   attributes:
     label: "Describe the issue"
     description: "A clear and concise description of what the issue is."
   validations:
     required: true
+
 - type: textarea
   attributes:
-    label: Reproduction steps
+    label: Reproduction Steps
     description: "Without steps to reproduce, it will be hard to fix. It is very important that you fill out this part. Issues without it will be closed."
     value: |
       1.
@@ -41,10 +52,11 @@ body:
       ...
   validations:
     required: true
+
 - type: textarea
   attributes:
     label: "Debug logs"
-    description: "To enable debug logs check this https://www.home-assistant.io/integrations/logger/, this **needs** to include _everything_ from startup of Home Assistant to the point where you encounter the issue."
+    description: "If enabled, add the contents of the Home Assistant [Debug Logger File](https://www.home-assistant.io/integrations/logger/) here; this **needs** to include _everything_ from startup of Home Assistant to the point where you encounter the issue."
     render: text
   validations:
     required: true
@@ -52,4 +64,4 @@ body:
 - type: textarea
   attributes:
     label: "Diagnostics dump"
-    description: "Drag the diagnostics dump file here. (see https://www.home-assistant.io/integrations/diagnostics/ for info)"
+    description: "If enabled, add the contents of the Home Assistant [Diagnostics File](https://www.home-assistant.io/integrations/diagnostics/) here."
