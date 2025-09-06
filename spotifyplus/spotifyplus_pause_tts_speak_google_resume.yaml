@@ -42,12 +42,13 @@ blueprint:
       name: Message Length (in seconds)
       description: >-
         The number of seconds it takes to process and play the given message text.
+      default: 5
       selector:
         number:
-          min: 1
-          max: 120
-          mode: box
-      default: 5
+            min: 0
+            max: 60
+            unit_of_measurement: seconds
+            mode: slider
 
 trigger: []
 condition: []
@@ -69,11 +70,7 @@ action:
       cache: true
 
   # delay, allowing message to play before we resume Spotify play.
-  - service: delay
-      hours: 0
-      minutes: 0
-      seconds: !input message_length_seconds
-      milliseconds: 0
+  - delay: "!input message_length_seconds"
 
   # resume Spotify media player.
   - service: spotifyplus.player_media_resume
