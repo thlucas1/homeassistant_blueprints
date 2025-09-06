@@ -1,0 +1,87 @@
+blueprint:
+  name: SpotifyPlus Pause for Google TTS Speak then Resume
+  description: >-
+    Pauses the Spotify player to play a TTS message on a Google Cast device and then resumes play after the message.
+  author: Todd Lucas 
+  domain: automation
+  
+  input:
+    media_player:
+      name: Media Player
+      description: The SpotifyPlus media player that will be used to pause and resume the Spotify player.  
+      selector:
+        entity:
+          integration: spotifyplus
+          domain: media_player
+          
+    device_id:
+      name: Device Name
+      description: >-
+        The name or id the Spotify Connect Player device this command is targeting.  
+      selector:
+        text:
+      default: ""
+
+    message_player:
+      name: TTS Message Player
+      description: The Google Cast media player that will be used to speak the TTS message.
+      selector:
+        entity:
+          integration: google cast
+          domain: media_player
+          
+    message_text:
+      name: Message Text
+      description: >-
+        Message text that will be played on the device.  
+      selector:
+        text:
+      default: "This message will be played on the specified device"
+
+    message_length_seconds:
+      name: Message Length (in seconds)
+      description: >-
+        The number of seconds it takes to process and play the given message text.
+      selector:
+        number:
+          min: 1
+          max: 120
+          mode: box
+      default: 5
+
+trigger: []
+condition: []
+
+action:
+  # pause Spotify media player.
+  - service: spotifyplus.player_media_pause
+    data:
+      entity_id: !input media_player
+      device_id: !input device_id
+
+  # play the TTS message using the Google media player.
+  - service: tts.speak
+    target:
+      entity_id: tts.google_en_com
+    data:
+      media_player_entity_id: !input message_player
+      message: !input message_text
+      cache: true
+
+  # delay, allowing message to play before we resume Spotify play.
+  - service: delay
+      hours: 0
+      minutes: 0
+      seconds: !input message_length_seconds
+      milliseconds: 0
+
+  # resume Spotify media player.
+  - service: spotifyplus.player_media_resume
+    data:
+      entity_id: !input media_player
+      device_id: !input device_id
+
+# restart the script if it is triggered again while already running.
+# do not log any messages if we exceed limit threshold.
+mode: restart
+max_exceeded: silent  
