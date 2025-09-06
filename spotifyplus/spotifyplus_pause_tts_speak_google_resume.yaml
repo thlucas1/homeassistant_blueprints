@@ -53,6 +53,9 @@ blueprint:
 trigger: []
 condition: []
 
+variables:
+  delay_seconds: !input message_length_seconds
+
 action:
   # pause Spotify media player.
   - service: spotifyplus.player_media_pause
@@ -71,7 +74,7 @@ action:
 
   # delay, allowing message to play before we resume Spotify play.
   # assumes hours=0, minutes=0, and input value is in seconds.
-  - delay: "00:00:{{ !input message_length_seconds }}"
+  - delay: "00:00:{{delay_seconds}}"
 
   # resume Spotify media player.
   - service: spotifyplus.player_media_resume
