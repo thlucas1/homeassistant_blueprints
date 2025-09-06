@@ -27,7 +27,7 @@ blueprint:
       description: The Google Cast media player that will be used to speak the TTS message.
       selector:
         entity:
-          integration: google_cast
+          integration: cast
           domain: media_player
           
     message_text:
