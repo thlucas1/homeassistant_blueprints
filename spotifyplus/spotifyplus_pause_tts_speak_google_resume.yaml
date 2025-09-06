@@ -50,6 +50,9 @@ blueprint:
             unit_of_measurement: seconds
             mode: slider
 
+variables:
+  messsage_delay_hhmmss: "00:00:!input message_length_seconds"
+
 trigger: []
 condition: []
 
@@ -71,7 +74,7 @@ action:
 
   # delay, allowing message to play before we resume Spotify play.
   # assumes hours=0, minutes=0, and input value is in seconds.
-  - delay: "00:00:!input message_length_seconds"
+  - delay: "{{ messsage_delay_hhmmss }}"
 
   # resume Spotify media player.
   - service: spotifyplus.player_media_resume
