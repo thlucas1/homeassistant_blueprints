@@ -24,7 +24,7 @@ blueprint:
 
     message_player:
       name: TTS Message Player
-      description: The Google Cast media player that will be used to speak the TTS message.
+      description: The Google Cast media player that will be used to speak the TTS message.  This should be the equivalent of the Device Name above.
       selector:
         entity:
           integration: cast
@@ -41,11 +41,11 @@ blueprint:
     message_length_seconds:
       name: Message Length (in seconds)
       description: >-
-        The number of seconds it takes to process and play the given message text.
+        The amount of time (in MM:SS) it takes to process and play the given message text.
       default: 5
       selector:
         number:
-            min: 0
+            min: 1
             max: 60
             unit_of_measurement: seconds
             mode: slider
@@ -70,7 +70,8 @@ action:
       cache: true
 
   # delay, allowing message to play before we resume Spotify play.
-  - delay: "!input message_length_seconds"
+  # assumes hours=0, minutes=0, and input value is in seconds.
+  - delay: "00:00:!input message_length_seconds"
 
   # resume Spotify media player.
   - service: spotifyplus.player_media_resume
