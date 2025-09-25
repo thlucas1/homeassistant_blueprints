@@ -19,15 +19,17 @@ Use the following links for more information.
 
 # What It Does
 
-Starts a lightshow effect on the specified Philips Hue lighting when play Spotify content via the SpotifyPlus integration.
+Starts a lightshow effect on the specified Philips Hue lighting when playing Spotify content via a SpotifyPlus media player.
 The lighting colors will change with the Spotify nowplaying image content.  The image is queried for the top 6 dominant
-colors, and the lights alternate between these colors repeatedly until the nowplaying image changes.
+colors, and the lights alternate between these colors repeatedly until the nowplaying image changes.  
 
 # How It Works
 
 The `spotifyplus.get_image_palette_colors` service is called to retrieve the color palette of the nowplaying image url.
 
 The `light.turn_on` service is called to change the Philips Hue light color.
+
+The automation stops when the Spotify media player state is not `playing`.
 
 # Import Blueprint
 
