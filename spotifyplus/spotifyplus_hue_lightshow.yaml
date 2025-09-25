@@ -1,0 +1,141 @@
+blueprint:
+  name: SpotifyPlus Hue Lightshow
+  description: >-
+    Starts a Philips Hue lightshow effect playing Spotify content via the SpotifyPlus media player.
+  author: Todd Lucas 
+  domain: automation
+  
+  input:
+    media_player:
+      name: Media Player
+      description: The SpotifyPlus media player that will be used to query the Spotify Player content.
+      selector:
+        entity:
+          integration: spotifyplus
+          domain: media_player
+          
+    hue_light:
+      name: Hue Light
+      description: The Philips Hue light that will present the lightshow effect.
+      selector:
+        entity:
+          integration: hue
+          domain: light
+          
+    light_brightness_pct:
+      name: Light Brightness (in percentage)
+      description: >-
+        The percentage of brightness to set the lights to; 1 is minimum brightness, 100 is maximum brightness.
+      default: 100
+      selector:
+        number:
+            min: 1
+            max: 100
+            unit_of_measurement: percentage
+            mode: slider
+
+    light_cycle_speed:
+      name: Light Cycle Speed (in seconds)
+      description: >-
+        Amount of seconds to keep a light color active prior to changing to the next available image palette color; range is 1 to 10 seconds.
+      default: 2
+      selector:
+        number:
+            min: 1
+            max: 10
+            unit_of_measurement: seconds
+            mode: slider
+
+    light_transition_secs:
+      name: Light Transition Time (in seconds)
+      description: >-
+        Amount of seconds to transition the light color from one to the next; range is 0 (no transition) to 10 seconds.
+      default: 0
+      selector:
+        number:
+            min: 0
+            max: 10
+            unit_of_measurement: seconds
+            mode: slider
+
+variables:
+  light_brightness_pct: !input light_brightness_pct
+  light_cycle_speed: !input light_cycle_speed
+  light_transition_secs: !input light_transition_secs
+
+trigger:
+
+  - alias: Trigger when SpotifyPlus media player Track ID changes
+    trigger: state
+    entity_id: !input media_player
+    attribute: media_content_id
+
+condition: []
+
+action:
+
+  - variables:
+      # we don't use most of these in the automation, but they are helpful when tracing.
+      spotify_uri: "{{ state_attr('!input media_player', 'media_content_id') }}"
+      spotify_title: "{{ state_attr('!input media_player', 'media_title') }}"
+      spotify_album: "{{ state_attr('!input media_player', 'media_album_name') }}"
+      spotify_artist: "{{ state_attr('!input media_player', 'media_artist') }}"
+      spotify_artist_uri: "{{ state_attr('!input media_player', 'sp_artist_uri') }}"
+      spotify_image_url: "{{ state_attr('!input media_player', 'sp_nowplaying_image_url') }}"
+
+  - alias: Get Spotify now-playing image palette information
+    action: spotifyplus.get_image_palette_colors
+    data:
+      entity_id: !input media_player
+      image_source: "{{ spotify_image_url }}"
+      color_count: 10
+      color_quality: 1
+      brightness_filter_low: 100
+      brightness_filter_high: 600
+      hue_distance_filter: 10
+    response_variable: palette_response
+
+  - variables:
+      # get top 6 RGB colors in the image palette.
+      colors_rgb: |-
+        [
+          {{ palette_response['result']['items'][0]['rgb'] }},
+          {{ palette_response['result']['items'][1]['rgb'] }},
+          {{ palette_response['result']['items'][2]['rgb'] }},
+          {{ palette_response['result']['items'][3]['rgb'] }},
+          {{ palette_response['result']['items'][4]['rgb'] }},
+          {{ palette_response['result']['items'][5]['rgb'] }}
+        ]
+  - repeat:
+
+      while:
+        # repeat as long as the spotify player is still active and the
+        # nowplaying image has not changed.
+        - condition: state
+          alias: SpotifyPlus media player is still playing something
+          entity_id: !input media_player
+          state: playing
+        - condition: template
+          alias: SpotifyPlus media player nowplaying image has not changed
+          value_template: >-
+            {{ spotify_image_url == state_attr('!input media_player', 'sp_nowplaying_image_url') }}
+            
+      sequence:
+        - repeat:
+            # repeat for each item in the RGB color palette.
+            count: "{{ colors_rgb | count }}"
+            sequence:
+              - alias: Turn light on, set RGB color, with transition
+                action: light.turn_on
+                data:
+                  rgb_color: "{{ colors_rgb[repeat.index - 1] }}"
+                  brightness_pct: "{{ light_brightness_pct }}"
+                  transition: "{{ light_transition_secs }}"
+                target:
+                  entity_id: light.office
+              - delay: "00:00:{{light_cycle_speed}}"
+
+# restart the script if it is triggered again while already running.
+# do not log any messages if we exceed limit threshold.
+mode: restart
+max_exceeded: silent  

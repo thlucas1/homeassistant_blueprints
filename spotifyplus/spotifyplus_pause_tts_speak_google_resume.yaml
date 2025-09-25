@@ -41,7 +41,7 @@ blueprint:
     message_length_seconds:
       name: Message Length (in seconds)
       description: >-
-        The amount of time (in MM:SS) it takes to process and play the given message text.
+        The amount of time (in seconds) it takes to process and play the given message text.
       default: 5
       selector:
         number:
