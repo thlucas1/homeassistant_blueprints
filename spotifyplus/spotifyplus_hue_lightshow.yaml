@@ -76,12 +76,12 @@ action:
 
   - variables:
       # we don't use most of these in the automation, but they are helpful when tracing.
-      spotify_uri: "{{ state_attr('!input media_player', 'media_content_id') }}"
-      spotify_title: "{{ state_attr('!input media_player', 'media_title') }}"
-      spotify_album: "{{ state_attr('!input media_player', 'media_album_name') }}"
-      spotify_artist: "{{ state_attr('!input media_player', 'media_artist') }}"
-      spotify_artist_uri: "{{ state_attr('!input media_player', 'sp_artist_uri') }}"
-      spotify_image_url: "{{ state_attr('!input media_player', 'sp_nowplaying_image_url') }}"
+      spotify_uri: "{{ state_attr(!input media_player, 'media_content_id') }}"
+      spotify_title: "{{ state_attr(!input media_player, 'media_title') }}"
+      spotify_album: "{{ state_attr(!input media_player, 'media_album_name') }}"
+      spotify_artist: "{{ state_attr(!input media_player, 'media_artist') }}"
+      spotify_artist_uri: "{{ state_attr(!input media_player, 'sp_artist_uri') }}"
+      spotify_image_url: "{{ state_attr(!input media_player, 'sp_nowplaying_image_url') }}"
 
   - alias: Get Spotify now-playing image palette information
     action: spotifyplus.get_image_palette_colors
@@ -118,7 +118,7 @@ action:
         - condition: template
           alias: SpotifyPlus media player nowplaying image has not changed
           value_template: >-
-            {{ spotify_image_url == state_attr('!input media_player', 'sp_nowplaying_image_url') }}
+            {{ spotify_image_url == state_attr(!input media_player, 'sp_nowplaying_image_url') }}
 
       sequence:
         - repeat:

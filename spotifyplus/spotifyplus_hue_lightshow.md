@@ -35,11 +35,11 @@ The automation stops when the Spotify media player state is not `playing`.
 
 Use the following link to import the blueprint into your Home Assistant image.
 
-<a href="https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fthlucas1%2Fhomeassistant_blueprints%2Fblob%2Fmaster%2Fspotifyplus%2Fspotifyplus_hue_lightshow.yaml%3Fversion=1.0.1"><img src="https://my.home-assistant.io/badges/blueprint_import.svg" alt="Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled." width="" height="" loading="lazy"></a>
+<a href="https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fthlucas1%2Fhomeassistant_blueprints%2Fblob%2Fmaster%2Fspotifyplus%2Fspotifyplus_hue_lightshow.yaml%3Fversion=1.0.2"><img src="https://my.home-assistant.io/badges/blueprint_import.svg" alt="Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled." width="" height="" loading="lazy"></a>
 
 
 # Change Log
 
-#### [ 1.0.1 ] - 2025/09/25
+#### [ 1.0.2 ] - 2025/09/25
 
   * Initial release.
