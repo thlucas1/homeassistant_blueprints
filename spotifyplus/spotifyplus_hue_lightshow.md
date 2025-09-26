@@ -2,7 +2,7 @@
 
 __SpotifyPlus Hue Lightshow__
 
-Starts a Philips Hue lightshow effect playing Spotify content via a SpotifyPlus media player.
+Starts a Philips Hue lightshow effect when playing Spotify content via a SpotifyPlus media player.
 
 Use the following links for more information.
 * [Requirements](#requirements)
