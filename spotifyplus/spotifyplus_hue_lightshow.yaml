@@ -31,7 +31,7 @@ blueprint:
         number:
             min: 1
             max: 100
-            unit_of_measurement: percentage
+            unit_of_measurement: percent
             mode: slider
 
     light_cycle_speed:
