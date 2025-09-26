@@ -1,7 +1,7 @@
 blueprint:
   name: SpotifyPlus Hue Lightshow
   description: >-
-    Starts a Philips Hue lightshow effect playing Spotify content via a SpotifyPlus media player.
+    Starts a Philips Hue lightshow effect playing Spotify content via a SpotifyPlus media player. </br>
     Note that saved changes will not be applied until the nowplaying image changes.
   author: Todd Lucas 
   domain: automation
