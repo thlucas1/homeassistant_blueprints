@@ -25,6 +25,9 @@ colors, and the lights alternate between these colors repeatedly until the nowpl
 
 # How It Works
 
+The SpotifyPlus media player must be turned on in order to receive Spotify Player playstate updates.
+If the media player is off, then player state changes will not occur and your lighting won't change.
+
 The `spotifyplus.get_image_palette_colors` service is called to retrieve the color palette of the nowplaying image url.
 
 The `light.turn_on` service is called to change the Philips Hue light color.

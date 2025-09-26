@@ -51,7 +51,7 @@ blueprint:
       name: Light Transition Time (in seconds)
       description: >-
         Amount of seconds to transition the light color from one to the next; range is 0 (no transition), 1 to 10 seconds.  It is recommended to keep this value the same as Light Cycle Speed if not zero.
-      default: 0
+      default: 2
       selector:
         number:
             min: 0
