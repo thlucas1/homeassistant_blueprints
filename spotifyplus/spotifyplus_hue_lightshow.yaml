@@ -23,7 +23,7 @@ blueprint:
           domain: light
           
     light_brightness_pct:
-      name: Light Brightness (in percentage)
+      name: Light Brightness (in percent)
       description: >-
         The percentage of brightness to set the lights to; 1 is minimum brightness, 100 is maximum brightness.
       default: 100
